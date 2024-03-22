@@ -256,7 +256,14 @@ class ServidorController:
             return {'message': 'Servidor eliminado correctamente'}, 204
         else:
             raise SourceNotFound('Servidor no encontrado')
-        
+    @classmethod
+    def delete_servidor_usuario(cls, servidor_id, usuario_id):
+        servidor = Servidor(servidor_id=servidor_id)
+        if Servidor.is_registered(servidor):
+            Servidor.delete_servidor_usuario(servidor_id, usuario_id)
+            return {'message': 'Vinculo eliminado correctamente'}, 204
+        else:
+            raise SourceNotFound('Servidor no encontrado')    
     @classmethod
     def get_servidor(cls, nombre_servidor):
         # servidor_id = session.get('servidor_id')

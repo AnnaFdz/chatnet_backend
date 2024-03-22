@@ -142,6 +142,13 @@ class Servidor:
         query = "DELETE FROM chatnet.servidores WHERE servidor_id = %s"
         params = servidor.servidor_id,
         DatabaseConnection.execute_query(query, params=params)
+    @classmethod
+    def delete_servidor_usuario(cls, servidor_id, usuario_id):
+        query = '''DELETE FROM chatnet.usuarios_servidores 
+                    WHERE usuario_id=%s AND servidor_id=%s'''
+        
+        params = usuario_id, servidor_id
+        DatabaseConnection.execute_query(query, params=params)
     
     # @classmethod
     # def create_usuarios(cls, usuario_id, servidor_id):
